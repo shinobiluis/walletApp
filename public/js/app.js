@@ -66434,6 +66434,12 @@ __webpack_require__.r(__webpack_exports__);
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -66446,9 +66452,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -66476,10 +66482,25 @@ var Example = /*#__PURE__*/function (_Component) {
     _this.state = {
       money: 0.0,
       transfers: [],
-      error: null
-    };
+      error: null,
+
+      /**
+       * Creamos el estado de los datos del componente
+       * del formulario por el momento hardcodeamos el
+       * wallet_id
+       */
+      form: {
+        description: '',
+        amount: '',
+        wallet_id: 1
+      }
+    }; // https://es.reactjs.org/docs/faq-functions.html#bind-in-render
+
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // realizamos la peticion
+
 
   _createClass(Example, [{
     key: "componentDidMount",
@@ -66527,7 +66548,22 @@ var Example = /*#__PURE__*/function (_Component) {
       }
 
       return componentDidMount;
-    }()
+    }() // Actualizamos el state del form
+
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      console.log(e.target.value);
+      this.setState({
+        form: _objectSpread({}, this.state.form, _defineProperty({}, e.target.name, e.target.value))
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      console.log("send");
+    }
   }, {
     key: "render",
     value: function render() {
@@ -66541,7 +66577,13 @@ var Example = /*#__PURE__*/function (_Component) {
         className: "title"
       }, " $ ", this.state.money, " ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "col-md-12"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TransferForm__WEBPACK_IMPORTED_MODULE_3__["default"], null))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TransferForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        form: this.state.form,
+        onChange: this.handleChange // le pasamos la funcion
+        ,
+        onSubmit: this.handleSubmit // le pasamos la funcion
+
+      }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "m-t-md"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TransferList__WEBPACK_IMPORTED_MODULE_4__["default"], {
         transfers: this.state.transfers
@@ -66573,18 +66615,26 @@ if (document.getElementById('example')) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // recibimos el props
 
-
-var TransferForm = function TransferForm() {
+var TransferForm = function TransferForm(_ref) {
+  var form = _ref.form,
+      onChange = _ref.onChange,
+      onSubmit = _ref.onSubmit;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    className: "form-inline justify-content-center"
+    className: "form-inline justify-content-center",
+    onSubmit: onSubmit
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-goup mb-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",
     placeholder: "Description",
-    name: "description"
+    name: "description",
+    value: form.description // igualamos al props
+    ,
+    onChange: onChange // igualamos al props
+
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-group ms-sm-2 mb-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -66594,7 +66644,11 @@ var TransferForm = function TransferForm() {
   }, "$")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",
-    name: "amount"
+    name: "amount",
+    value: form.amount // igualamos al props
+    ,
+    onChange: onChange // igualamos al props
+
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-primary mb-2"

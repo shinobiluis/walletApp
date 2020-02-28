@@ -15,10 +15,24 @@ export class Example extends Component{
         this.state = {
             money:0.0,
             transfers: [],
-            error: null
+            error: null,
+            /**
+             * Creamos el estado de los datos del componente
+             * del formulario por el momento hardcodeamos el
+             * wallet_id
+             */
+            form: {
+                description:'',
+                amount: '',
+                wallet_id: 1
+            }
         }
+        // https://es.reactjs.org/docs/faq-functions.html#bind-in-render
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    // realizamos la peticion
     async componentDidMount(){
         try {
             // hacemos la peticion por get
@@ -36,6 +50,22 @@ export class Example extends Component{
         }
     }
 
+    // Actualizamos el state del form
+    handleChange(e){
+        console.log(e.target.value)
+        this.setState({
+            form:{
+                ...this.state.form,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    
+    handleSubmit(e){
+        e.preventDefault()
+        console.log("send")
+    }
+
     render(){
         return (
             <div className="container">
@@ -45,7 +75,12 @@ export class Example extends Component{
                         <p className="title"> $ {this.state.money} </p>
                     </div>
                     <div className="col-md-12">
-                        <TransferForm/>
+                        {/* Le pasamos los props al componente */}
+                        <TransferForm 
+                            form={this.state.form} 
+                            onChange={this.handleChange} // le pasamos la funcion
+                            onSubmit={this.handleSubmit} // le pasamos la funcion
+                        />
                     </div>
                 </div>
                 <div className="m-t-md">

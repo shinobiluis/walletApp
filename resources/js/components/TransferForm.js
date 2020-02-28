@@ -1,13 +1,16 @@
 import React from 'react';
 
-const TransferForm = () => (
-    <form className="form-inline justify-content-center">
+// recibimos el props
+const TransferForm = ({form, onChange, onSubmit}) => (
+    <form className="form-inline justify-content-center" onSubmit={onSubmit}>
         <div className="form-goup mb-2">
             <input 
                 type="text"
                 className="form-control"
                 placeholder="Description"
                 name="description"
+                value={form.description} // igualamos al props
+                onChange={onChange} // igualamos al props
             />
         </div>
         <div className="input-group ms-sm-2 mb-2">
@@ -18,6 +21,8 @@ const TransferForm = () => (
                 type="text"
                 className="form-control"
                 name="amount"
+                value={form.amount} // igualamos al props
+                onChange={onChange} // igualamos al props
             />
         </div>
         <button
