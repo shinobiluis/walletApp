@@ -18,7 +18,10 @@ function Example() {
 }
 
 export default Example;
-
+/**
+ * Si en la vista existe un elemento con id example
+ * rendeara el componente.
+ */
 if (document.getElementById('example')) {
     ReactDOM.render(<Example />, document.getElementById('example'));
 }
