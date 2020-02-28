@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        /**
+         * Mandamos a llamar los seeders
+         * recuerda que primero se debe crear wallets 
+         * y al final Trasnsfers
+         */
+        $this->call(WalletsTableSeeder::class);
+        $this->call(TransfersTableSeeder::class);
     }
 }
