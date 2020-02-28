@@ -22,10 +22,10 @@ class TransferController extends Controller
         $transfer->save();
 
         return response()->json([
-            'id' => '1', 
-            'description' => 'sdfaf', 
-            'amount' => 200, 
-            'wallet_id'=>1
+            'id' => $transfer->id, 
+            'description' => $request->description, 
+            'amount' => $transfer->amount, 
+            'wallet_id'=>$transfer->wallet_id 
         ], 201);
         
     }

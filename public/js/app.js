@@ -66560,10 +66560,62 @@ var Example = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      console.log("send");
-    }
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(e) {
+        var config, res, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                e.preventDefault();
+                _context2.prev = 1;
+                config = {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(this.state.form)
+                }; // hacemos la peticion por get
+
+                _context2.next = 5;
+                return fetch('http://127.0.0.1:8000/api/transfer', config);
+
+              case 5:
+                res = _context2.sent;
+                _context2.next = 8;
+                return res.json();
+
+              case 8:
+                data = _context2.sent;
+                this.setState({
+                  transfers: this.state.transfers.concat(data),
+                  money: this.state.money + parseInt(data.amount)
+                });
+                _context2.next = 15;
+                break;
+
+              case 12:
+                _context2.prev = 12;
+                _context2.t0 = _context2["catch"](1);
+                this.setState({
+                  error: _context2.t0
+                });
+
+              case 15:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[1, 12]]);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   }, {
     key: "render",
     value: function render() {
