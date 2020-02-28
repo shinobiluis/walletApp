@@ -66430,6 +66430,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _TransferForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TransferForm */ "./resources/js/components/TransferForm.js");
 /* harmony import */ var _TransferList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TransferList */ "./resources/js/components/TransferList.js");
+/* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../url */ "./resources/js/url.js");
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -66466,6 +66467,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
  * Importamos componentes
  */
 
+
+ // importamos la url
 
 
 var Example = /*#__PURE__*/function (_Component) {
@@ -66513,7 +66516,7 @@ var Example = /*#__PURE__*/function (_Component) {
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return fetch('http://127.0.0.1:8000/api/wallet');
+                return fetch("".concat(_url__WEBPACK_IMPORTED_MODULE_5__["default"], "/api/wallet"));
 
               case 3:
                 res = _context.sent;
@@ -66579,7 +66582,7 @@ var Example = /*#__PURE__*/function (_Component) {
                 }; // hacemos la peticion por get
 
                 _context2.next = 5;
-                return fetch('http://127.0.0.1:8000/api/transfer', config);
+                return fetch("".concat(_url__WEBPACK_IMPORTED_MODULE_5__["default"], "/api/transfer"), config);
 
               case 5:
                 res = _context2.sent;
@@ -66738,6 +66741,20 @@ var TransferList = function TransferList(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TransferList);
+
+/***/ }),
+
+/***/ "./resources/js/url.js":
+/*!*****************************!*\
+  !*** ./resources/js/url.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var url = 'http://127.0.0.1:8000';
+/* harmony default export */ __webpack_exports__["default"] = (url);
 
 /***/ }),
 

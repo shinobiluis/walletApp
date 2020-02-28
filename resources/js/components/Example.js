@@ -6,6 +6,9 @@ import ReactDOM from 'react-dom';
 import TransferForm from './TransferForm';
 import TransferList from './TransferList';
 
+// importamos la url
+import url from './../url';
+
 export class Example extends Component{
 
     // Creamos el constructor
@@ -36,7 +39,7 @@ export class Example extends Component{
     async componentDidMount(){
         try {
             // hacemos la peticion por get
-            let res = await fetch('http://127.0.0.1:8000/api/wallet')
+            let res = await fetch(`${url}/api/wallet`)
             // almacenamos la respeusta en data
             let data = await res.json()
             // actualizamos el state
@@ -73,7 +76,7 @@ export class Example extends Component{
                 body: JSON.stringify(this.state.form)
             }
             // hacemos la peticion por get
-            let res = await fetch('http://127.0.0.1:8000/api/transfer', config)
+            let res = await fetch(`${url}/api/transfer`, config)
             // almacenamos la respeusta en data
             let data = await res.json()
 
