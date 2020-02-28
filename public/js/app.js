@@ -65676,6 +65676,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _TransferForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TransferForm */ "./resources/js/components/TransferForm.js");
+/* harmony import */ var _TransferList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TransferList */ "./resources/js/components/TransferList.js");
+
+
 
 
 
@@ -65690,7 +65694,38 @@ function Example() {
     className: "title"
   }, " $ 1000 ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-12"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TransferForm__WEBPACK_IMPORTED_MODULE_2__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "m-t-md"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TransferList__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Example);
+/**
+ * Si en la vista existe un elemento con id example
+ * rendeara el componente.
+ */
+
+if (document.getElementById('example')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Example, null), document.getElementById('example'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/TransferForm.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/TransferForm.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var TransferForm = function TransferForm() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "form-inline justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-goup mb-2"
@@ -65712,22 +65747,33 @@ function Example() {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-primary mb-2"
-  }, "Add")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "m-t-md"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+  }, "Add"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TransferForm);
+
+/***/ }),
+
+/***/ "./resources/js/components/TransferList.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/TransferList.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var TransferList = function TransferList() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Ejemplo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "1200.00"))))));
-}
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Ejemplo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "1200.00"))));
+};
 
-/* harmony default export */ __webpack_exports__["default"] = (Example);
-/**
- * Si en la vista existe un elemento con id example
- * rendeara el componente.
- */
-
-if (document.getElementById('example')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Example, null), document.getElementById('example'));
-}
+/* harmony default export */ __webpack_exports__["default"] = (TransferList);
 
 /***/ }),
 
